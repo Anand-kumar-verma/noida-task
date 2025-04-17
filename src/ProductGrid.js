@@ -1,16 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import bookmard from "./assets/Bookmark (1).svg";
-import bookmards from "./assets/Bookmark.svg";
-import search from "./assets/search.svg";
-import shopping from "./assets/shopping-bag.svg";
-import cart from "./assets/cart.png";
-import user from "./assets/user-alt.svg";
-import { subcategories, subCategorySettings } from "./rawdata";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import bookmards from "./assets/Bookmark.svg";
+import shopping from "./assets/shopping-bag.svg";
+import Header from "./Header";
+import { subcategories, subCategorySettings } from "./rawdata";
 const ProductGrid = () => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,47 +28,12 @@ const ProductGrid = () => {
       </div>
     );
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-black min-h-screen text-white relative">
       {/* Header */}
-      <header className="flex flex-wrap items-center justify-between p-4 border-b border-gray-800">
-        <div className="text-xl font-bold tracking-widest">TANN TRIM</div>
-        <nav className="hidden md:flex gap-6 text-sm mt-2 md:mt-0">
-          <a href="#" className="hover:text-gray-300">
-            Bag
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            Travel
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            Accessories
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            Gifting
-          </a>
-          <a href="#" className="hover:text-gray-300">
-            Jewelery
-          </a>
-        </nav>
-        <div className="grid grid-cols-4 place-items-center gap-4 mt-2 md:mt-0 mr-4">
-          <img src={search} className="w-5 h-5 cursor-pointer" />
-          <img src={user} className="w-4 h-4 cursor-pointer" />
-          <img src={bookmard} className="w-4 h-4 cursor-pointer" />
-          <div className="relative">
-            <img src={cart} className="w-5 h-5 cursor-pointer" />
 
-            {cartItems?.length > 0 && (
-              <span className="!bg-pink-500 absolute -top-1 -right-1 rounded-full px-1 text-[10px]">
-                {cartItems?.length || 0}
-              </span>
-            )}
-          </div>
-          {/* <ShoppingCart className="w-5 h-5 cursor-pointer" />
-          <Menu className="w-5 h-5 cursor-pointer" /> */}
-        </div>
-      </header>
-
+      <Header cartItems={cartItems} />
       {/* Subcategories - Custom Auto Scroll */}
-      <div className="border-b border-gray-800 py-4 px-2 overflow-hidden">
+      <div className="border-b border-gray-800 py-4 px-2 overflow-hidden mt-[10vh]">
         <Slider {...subCategorySettings}>
           {subcategories.map((cat, index) => (
             <div
@@ -109,6 +71,7 @@ const ProductGrid = () => {
                 navigate("/product", {
                   state: {
                     product: product,
+                    cartItems: cartItems,
                   },
                 })
               }
