@@ -27,13 +27,14 @@ A stylish and responsive product grid web app built using **React.js**. This pro
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/tann-trim.git
+git clone https://github.com/Anand-kumar-verma/noida-task.git
 
 # 2. Move into the project folder
-cd tann-trim
+cd noida-task
 
 # 3. Install dependencies
 npm install
 
 # 4. Start the development server
 npm start
+```
